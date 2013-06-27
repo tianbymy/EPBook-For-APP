@@ -37,8 +37,10 @@
 		      html+="<li data-role='list-divider'>记录数据<span class='ui-li-count'>"+result.length+"</span></li>"
 		  for (i in result){
 		      html+="<li>";
+		      html+="<a href='tel:"+result[i].phone+"'>";
 		      html+="<h3>"+result[i].name+"</h3>";
 		      html+="<p>"+result[i].phone+"</p>";
+		      html+="</a>";
 		      html+="</li>";
 		  }
 		  $("#data-list").append(html).listview("refresh");
