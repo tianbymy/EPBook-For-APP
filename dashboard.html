@@ -17,7 +17,7 @@
   </head>
   <body id="body">
     <div data-role="page" id="body">
-      <div class="navbar" data-role="header">
+      <div class="navbar" data-role="header" data-position="fixed">
       	<a href="" data-role="button" data-icon="home" class="ui-btn-icon-notext" >
       		home
       	</a>
@@ -25,37 +25,44 @@
       	<a href="" data-role="button" data-icon="delete">
       		delete
       	</a> 
-      </div>
-       <div>			
-		  <p>成都知一软件有限公司/技术管理部</p>		  
-			
-		</div>
+      </div>     
       <div data-role="content" id="working-area">
-	<div class="row-fluid" id="screen-full">
-	  <ul data-inset="true" data-role="listview">
-	    <li>
-	      <a href="enterprise_phone_book.html" rel="external">
-		<i class="icon-calendar"></i>企业电话簿
-	      </a></li>
-<!--	    <li>
-	      <a href="my_phone_book.html" rel="external">
-		<i class="icon-calendar"></i>个人电话簿
-	      </a></li>
-	    <li>
-	      <a href="my_card.html">
-		<i class="icon-info-sign"></i>我的名片
-	      </a></li>
-	    <li>
-	      <a href="about.html">
-		<i class="icon-phone"></i>关于我们
-	      </a></li>
-	    <li>
-	      <a href="version.html">
-		<i class="icon-link"></i>版本更新
-	      </a></li>
--->
-	  </ul>
-	</div>
+		<div class="row-fluid" id="screen-full">
+		   <div style="background-color:#f1f1f1;">	
+	        <p>	杨丹 13281283611</p>	
+			<p>成都知一软件有限公司/技术开发部</p>				
+		  </div>
+
+		  <div data-role="collapsible-set" data-iconpos="right">
+			<div data-role="collapsible" data-collapsed="false">
+			<h3>企业常用联系</h3>
+			<p>企业电话：028-85179020</p>
+			</div>			
+		  </div>
+		  <ul data-inset="true" data-role="listview">
+		    <li>
+		      <a href="enterprise_phone_book.html" rel="external">
+			<i class="icon-calendar"></i>企业电话簿
+		      </a></li>
+	<!--	    <li>
+		      <a href="my_phone_book.html" rel="external">
+			<i class="icon-calendar"></i>个人电话簿
+		      </a></li>
+		    <li>
+		      <a href="my_card.html">
+			<i class="icon-info-sign"></i>我的名片
+		      </a></li>
+		    <li>
+		      <a href="about.html">
+			<i class="icon-phone"></i>关于我们
+		      </a></li>
+		    <li>
+		      <a href="version.html">
+			<i class="icon-link"></i>版本更新
+		      </a></li>
+	-->
+		  </ul>
+		</div>
       </div>
       <div class="footer" data-role="footer">
 	<p>&copy; 2013 版权所有： 成都知一软件有限公司</p>
