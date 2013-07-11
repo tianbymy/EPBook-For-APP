@@ -23,21 +23,20 @@
       <div data-role="content" id="working-area">
 	<div class="row-fluid" id="screen-full">
 	  <div id="login" style="width:80%;margin:0 auto;">
-	    <fieldset >
-      	      <input type="text" />
-      	      <input type="password" />
-      	      <div class="ui-grid-a">
-      		<div class="ui-block-a">
-      		  <input type="submit" value="注册" />
+	    <form action="http://192.168.1.109:3000/api/sessions/login" data-transition="pop" method="GET" class="ui-body ui-body-a ui-corner-all">
+	      <fieldset >
+      		<input type="text" name="user_login[email]" value="tianbymy@163.com"/>
+      		<input type="password" name="user_login[password]" value="123456"/>
+      		<div class="ui-grid-a">
+		  <div class="ui-block-b">
+      		    <button type="submit" data-theme="b" name="submit" value="submit-value">登录</button>
+		  </div>
+		  <div>
+                    <a href="#">注册</a> | <a href="#">忘记密码</a>
+		  </div>
       		</div>
-		<div class="ui-block-b">
-                  <input type="submit" value="登录" />
-		</div>
-		<div>
-                  <a href="#">忘记密码</a>
-		</div>
-      	      </div>
-	    </fieldset>
+	      </fieldset>
+	    </form>
 	  </div>
 	</div>
 	<div class="footer" data-role="footer">
