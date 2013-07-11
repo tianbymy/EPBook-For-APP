@@ -18,35 +18,43 @@
   <body id="body">
     <div data-role="page" id="body">
       <div class="navbar" data-role="header">
-	<h2>成都知一软件有限公司（企业名称）</h2>
+	<script type="text/javascript">
+    	  $(function(){
+	      get_servers({
+		  url: get_root_organ_path,
+		  data: {"organ_id": user.organ_id},
+		  callback: function(data){
+		      $("h2").html(data.name)
+		      list_children(data.id)
+		  }
+	      })
+	  })
+	  function list_children(organ_id){
+	      get_servers({
+		  url: get_childs_organ_path,
+		  data: {"organ_id": organ_id},
+		  callback: function(result){
+		      html="";
+		      html+="<li data-role='list-divider'>部门总数<span class='ui-li-count'>"+result.length+"</span></li>"
+		      for (i in result){
+			  html+="<li>";
+			  html+="<a href='#'>";
+			  html+="<h3>"+result[i].name+"</h3>";
+			  html+="</a>";
+			  html+="</li>";
+		      }
+		      $("#data-list").append(html).listview("refresh");
+		  }
+	      })
+	  }
+	</script>
+	<h2></h2>
       </div>
       <div data-role="content" id="working-area">
 	<div class="row-fluid" id="screen-full">
 	  <!-- 企业电话簿  区域-->
 	  <ul id="data-list" data-role="listview" data-split-icon="delete" data-filter="true">
-
-	  <ul>
-	    <script type="text/javascript">
-    	      $.ajax({
-		  type: "get",
-		  url: base_url+"/users",
-		  dataType: "jsonp",
-		  jsonp: "callback",
-		  success: function(result){
-		      html="";
-		      html+="<li data-role='list-divider'>记录数据<span class='ui-li-count'>"+result.length+"</span></li>"
-		  for (i in result){
-		      html+="<li>";
-		      html+="<a href='tel:"+result[i].phone+"'>";
-		      html+="<h3>"+result[i].name+"</h3>";
-		      html+="<p>"+result[i].phone+"</p>";
-		      html+="</a>";
-		      html+="</li>";
-		  }
-		  $("#data-list").append(html).listview("refresh");
-		  }
-	      })
-	    </script>
+	    <ul>
 	</div>
       </div>
     </div>
