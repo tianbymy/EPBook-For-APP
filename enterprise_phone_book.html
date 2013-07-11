@@ -29,6 +29,12 @@
 		  }
 	      })
 	  })
+	  function get_children(organ_id){
+	      alert(organ_id)
+	  }
+	  function get_users(organs_id){
+	      alert(organ_id)
+	  }
 	  function list_children(organ_id){
 	      get_servers({
 		  url: get_childs_organ_path,
@@ -38,7 +44,11 @@
 		      html+="<li data-role='list-divider'>部门总数<span class='ui-li-count'>"+result.length+"</span></li>"
 		      for (i in result){
 			  html+="<li>";
-			  html+="<a href='#'>";
+			  if (result.child){
+			      html+="<a href='javascript:void(0)' rel='external' onclick='get_children("+result[i].id+")'>";
+			  }else{
+			      html+="<a href='javascript:void(0)' rel='external' onclick='get_users("+result[i].id+")'>";
+			  }
 			  html+="<h3>"+result[i].name+"</h3>";
 			  html+="</a>";
 			  html+="</li>";
