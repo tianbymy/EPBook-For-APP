@@ -16,58 +16,60 @@
     <script src="javascript/public.js" type="text/javascript"></script>
   </head>
   <body id="body">
+    <script type="text/javascript">
+      $(function(){
+	  get_servers({
+	      url: get_root_organ_path,
+	      data: {"organ_id": user.organ_id},
+	      callback: function(data){
+		  $("#body h2").html(data.name)
+		  list_children("#body #data-list",data.id)
+	      }
+	  })
+      })
+      function get_children(organ_id){
+
+      }
+      function get_users(organ_id){
+
+      }
+      function list_children(dom,organ_id){
+	  get_servers({
+	      url: get_childs_organ_path,
+	      data: {"organ_id": organ_id},
+	      callback: function(result){
+		  html="";
+		  html+="<li data-role='list-divider'>部门总数<span class='ui-li-count'>"+result.length+"</span></li>"
+		  for (i in result){
+		      html+="<li>";
+		      if (result.child){
+			  html+="<a href='#organ' rel='external' onclick='get_children("+result[i].id+")'>";
+		      }else{
+			  html+="<a href='#user' rel='external' onclick='get_users("+result[i].id+")'>";
+		      }
+		      html+=result[i].name
+		      html+="</a>";
+		      html+="</li>";
+		  }
+		  $(dom).append(html).listview("refresh");
+	      }
+	  })
+      }
+    </script>
     <div data-role="page" id="body">
       <div class="navbar" data-role="header">
-	<script type="text/javascript">
-    	  $(function(){
-	      get_servers({
-		  url: get_root_organ_path,
-		  data: {"organ_id": user.organ_id},
-		  callback: function(data){
-		      $("h2").html(data.name)
-		      list_children(data.id)
-		  }
-	      })
-	  })
-	  function get_children(organ_id){
-	      alert(organ_id)
-	  }
-	  function get_users(organs_id){
-	      alert(organ_id)
-	  }
-	  function list_children(organ_id){
-	      get_servers({
-		  url: get_childs_organ_path,
-		  data: {"organ_id": organ_id},
-		  callback: function(result){
-		      html="";
-		      html+="<li data-role='list-divider'>部门总数<span class='ui-li-count'>"+result.length+"</span></li>"
-		      for (i in result){
-			  html+="<li>";
-			  if (result.child){
-			      html+="<a href='javascript:void(0)' rel='external' onclick='get_children("+result[i].id+")'>";
-			  }else{
-			      html+="<a href='javascript:void(0)' rel='external' onclick='get_users("+result[i].id+")'>";
-			  }
-			  html+="<h3>"+result[i].name+"</h3>";
-			  html+="</a>";
-			  html+="</li>";
-		      }
-		      $("#data-list").append(html).listview("refresh");
-		  }
-	      })
-	  }
-	</script>
 	<h2></h2>
       </div>
       <div data-role="content" id="working-area">
 	<div class="row-fluid" id="screen-full">
 	  <!-- 企业电话簿  区域-->
-	  <ul id="data-list" data-role="listview" data-split-icon="delete" data-filter="true">
-	    <ul>
+	  <ol id="data-list" data-role="listview" data-filter="true">
+	    <ol>
 	</div>
       </div>
     </div>
+
+
 
   </body>
 </html>

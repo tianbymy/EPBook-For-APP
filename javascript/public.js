@@ -16,6 +16,6 @@ function get_servers(obj){
 
 /* 定义能访问的 api path */
 var get_root_organ_path = "/api/organs/get_root" ;
-var get_childs_organ_path = "/api/organs/get_childs" ;
+var get_childs_organ_path = "/api/organs/get_organ_tree" ;
 
 
