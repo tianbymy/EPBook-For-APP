@@ -2,7 +2,7 @@
           package="com.woody.test"
           android:sharedUserId="string"
           android:sharedUserLabel="string resource"
-          android:versionCode="1"
+          android:versionCode="0.01"
           android:versionName="0.01版"
           android:installLocation="auto">
 <!--["auto" | "internalOnly" | "preferExternal"] -->
