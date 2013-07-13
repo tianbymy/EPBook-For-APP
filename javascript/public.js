@@ -32,6 +32,7 @@ function logout(){
 	    if(msg.status=="success"){
 		localStorage.removeItem('email');
 		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 		$.mobile.changePage("index.html","slidedown", true, true);
 	    }else{
 		$("$message").html("退出失败");
@@ -40,30 +41,30 @@ function logout(){
     });
 }
 
-/*初始化user*/
-$(function(){
-    email = localStorage.getItem('email');
-    token = localStorage.getItem('token');
-    if(email && token){
-	get_servers({
-	    url: get_user_path,
-	    data: {"user_login[email]": email,"user_login[token]":token},
-	      callback: function(data){
-		  if (data.status){
-		      $.mobile.changePage("index.html","slidedown", true, true);
-		  }else{
-		      html="";
-		      if (data.name==null){
-			  html+="<span>欢迎您，尊敬的："+data.email+"</span>";
-		      }else{
-			  html+="<span>欢迎您，尊敬的："+data.name+"</span>";
-		      }
-		      $("#user").html(html)
-		  }
-	      }
-	  })
+inituser = function(email,token){
+    get_servers({
+	url: get_user_path,
+	data: {"user_login[email]": email,"user_login[token]":token},
+	callback: function(data){
+	    if (data.status){
+		$.mobile.changePage("index.html","slidedown", true, true);
+	    }else{
+		for (i in data){
+		    localStorage.setItem(i,data[i]);
+		}
+	    }
 	}
-})
+    })
+}
+function welcome(){
+    html="";
+    if (localStorage.getItem("name")==null){
+	html+="<span>欢迎您，尊敬的："+localStorage.getItem("email")+"</span>";
+    }else{
+	html+="<span>欢迎您，尊敬的："+localStorage.getItem("name")+"</span>";
+    }
+    $("#user").html(html)
+}
 
 
 

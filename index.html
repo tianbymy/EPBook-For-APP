@@ -47,8 +47,8 @@
 			jsonp: "callback",
 			success: function(msg){
 			    if(msg.status=="success"){
-				localStorage.setItem('email', msg.email);
-				localStorage.setItem('token', msg.auth_token);
+				/*初始化user*/
+				inituser(msg.email,msg.auth_token);
 				$.mobile.changePage("dashboard.html","slidedown", true, true);
 			    }else{
 				$("$message").html("登录失败,请重新登录");
