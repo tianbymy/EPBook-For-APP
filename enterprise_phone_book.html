@@ -82,7 +82,7 @@
 	html+="<div>用户数：<span class='ui-li-count'>"+result.length+"</span></div>"
 	html+="<ol>";
 	for(i in result){
-	    html+="<li><a href='tel:"+result[i].phone+"'>"+result[i].phone+"</a></li>"
+	    html+="<li><a href='tel:"+result[i].phone+"'>"+result[i].name+":"+result[i].phone+"</a></li>"
 	}
 	html+="</ol>"
 	return html;
