@@ -49,10 +49,10 @@
 			    if(msg.status=="success"){
 				/*初始化user*/
 				inituser(msg.email,msg.auth_token);
-				$.mobile.changePage("dashboard.html","slidedown", true, true);
+				$.mobile.changePage("dashboard.html","slidedown", false, false);
 			    }else{
 				$("$message").html("登录失败,请重新登录");
-				$.mobile.changePage("index.html","slidedown", true, true);
+				$.mobile.changePage("index.html","slidedown", false, false);
 			    }
 
 			}
