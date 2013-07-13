@@ -39,17 +39,17 @@
 	      data: {"organ_id": organ_id},
 	      callback: function(result){
 		  html="";
-		  html+="<li data-role='list-divider'>部门总数<span class='ui-li-count'>"+result.length+"</span></li>"
+		  html+="<div data-role='list-divider'>部门总数<span class='ui-li-count'>"+result.length+"</span></li>"
 		  for (i in result){
 		      html+="<li>";
 		      if (result.child){
-			  html+="<a href='#organ' rel='external' onclick='get_children("+result[i].id+")'>";
+			  html+="<div data-role='collapsible'>";
 		      }else{
-			  html+="<a href='#user' rel='external' onclick='get_users("+result[i].id+")'>";
+			  html+="<div data-role='collapsible'>";
 		      }
 		      html+=result[i].name
-		      html+="</a>";
-		      html+="</li>";
+		      html+="</div>";
+		      html+="</div>";
 		  }
 		  $(dom).append(html).listview("refresh");
 	      }
@@ -58,13 +58,14 @@
     </script>
     <div data-role="page" id="body">
       <div class="navbar" data-role="header">
+	<a href="#" data-rel="back" >后退</a>
 	<h2></h2>
       </div>
       <div data-role="content" id="working-area">
 	<div class="row-fluid" id="screen-full">
 	  <!-- 企业电话簿  区域-->
-	  <ol id="data-list" data-role="listview" data-filter="true">
-	    <ol>
+	  <div id="data-list" data-filter="true" data-role="collapsible-set">
+	    <div>
 	</div>
       </div>
     </div>
