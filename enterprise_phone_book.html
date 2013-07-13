@@ -63,22 +63,25 @@
     function get_children(organ_id){
 
     }
-    function get_users(organ_id){
-	get_servers({
+    function get_users(dom,organ_id){
+	$.ajax({
+	    type: "GET",
 	    url: get_users_path,
 	    data: {"organ_id": organ_id},
-	    callback: function(result){
-		html="";
-		html+="<div>用户数：<span class='ui-li-count'>"+result.length+"</span></div>"
-		html+=create_user_html(result);
-		return html;
+	    dataType: "jsonp",
+	    jsonp: "callback",
+	    success: function(result){
+		html = create_user_html(result);
+		dom.next("div").html(html);
 	    }
 	})
     }
     function create_user_html(result){
-	html="<ol>";
+	html="";
+	html+="<div>用户数：<span class='ui-li-count'>"+result.length+"</span></div>"
+	html+="<ol>";
 	for(i in result){
-	    html+="<li></li>"
+	    html+="<li><a href='tel:"+result[i].phone+"'>"+result[i].phone+"</a></li>"
 	}
 	html+="</ol>"
 	return html;
@@ -102,8 +105,8 @@
 	    html+="<li>";
 	    html+=result[i].name
 	    if (result[i].child.length==0){
-		html+="<b>用户数：</b>"
-		html+= get_users(result[i].id)
+		html+= "<span onclick='get_users($(this),"+result[i].id+")'>查看成员</span>";
+		html+="<div></div>";
 	    }else{
 		html+="<b>下级部门数："+result[i].child.length+"</b>"
 		html+=create_organ_html(result[i].child);
