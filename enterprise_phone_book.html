@@ -45,19 +45,20 @@
     /*初始化user*/
 
     $(function(){
-	organ_id = localStorage.getItem('organ_id');
-	if(organ_id==null){
-	    $("#data-list").html("<span style='color:red'>尊敬的用户您好，您暂时尚未加入任何企业，您需要先申请加入企业才能查看详细。</span>")
-	}else{
-	    get_servers({
-		url: get_root_organ_path,
-		data: {"organ_id": organ_id},
-		callback: function(data){
+	email = localStorage.getItem('email');
+	get_servers({
+	    url: get_root_organ_path,
+	    data: {"email": email},
+	    callback: function(data){
+		if(data==null){
+		    $("#data-list").html("<span style='color:red'>尊敬的用户您好，您暂时尚未加入任何企业，您需要先申请加入企业才能查看详细。</span>")
+		}else{
 		    $("#body h2").html(data.name)
 		    list_children("#body #data-list",data.id)
 		}
+		}
 	    })
-	}
+
     })
 
     function get_children(organ_id){
