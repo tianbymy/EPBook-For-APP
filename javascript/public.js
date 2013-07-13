@@ -21,11 +21,10 @@ var get_root_organ_path = base_url + "/api/organs/get_root" ;
 var get_childs_organ_path = base_url +"/api/organs/get_organ_tree" ;
 
 function logout(){
-    alert("正在退出")
     $.ajax({
 	type: "GET",
 	url: logout_path,
-	data: {email: $.cookie("email")},
+	data: {"user_login[email]": localStorage.getItem('email')},
 	dataType: "jsonp",
 	jsonp: "callback",
 	success: function(msg){
@@ -40,3 +39,12 @@ function logout(){
     });
 }
 
+/*初始化user*/
+$(function(){
+    email = localStorage.getItem('email');
+    token = localStorage.getItem('token');
+    if(email && token){
+	alert(email)
+	alert(token)
+    }
+})
