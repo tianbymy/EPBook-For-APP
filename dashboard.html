@@ -3,7 +3,7 @@
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>企业电话簿</title>
+    <title>企业通信录</title>
 
     <link href="css/jquery.mobile.css"  rel="stylesheet" type="text/css" />
     <link href="css/jquery-ui.css"  rel="stylesheet" type="text/css" />
@@ -19,56 +19,48 @@
     <div data-role="page" id="body">
       <div class="navbar" data-role="header" data-position="fixed">
       	<a href="" data-role="button" data-icon="home" class="ui-btn-icon-notext" >
-      		home
+      	  home
       	</a>
       	<h2>企业通讯录</h2>
-      	<a href="" data-role="button" data-icon="delete">退出</a>
+      	<a href="#" id="logout" data-role="button" data-icon="delete">退出</a>
+	<script type="text/javascript">
+	  $("#logout").bind("click",function(){
+	  logout();
+	  })
+	</script>
       </div>
       <div data-role="content" id="working-area">
-	<!--
-		<div class="row-fluid" id="screen-full">
-		   <div style="background-color:#f1f1f1;">
-	        <p>	杨丹 13281283611</p>
-			<p>成都知一软件有限公司/技术开发部</p>
-		  </div>
 
-		  <div data-role="collapsible-set" data-iconpos="right">
-			<div data-role="collapsible" data-collapsed="false">
-			<h3>企业常用联系</h3>
-			<p>企业电话：028-85179020</p>
-			</div>
-		  </div>
-		  -->
-		  <ul data-inset="true" data-role="listview">
-		    <li>
-		      <a href="enterprise_phone_book.html">
-			<i class="icon-calendar"></i>企业电话簿
-		      </a></li>
-	<!--	    <li>
-		      <a href="my_phone_book.html" rel="external">
-			<i class="icon-calendar"></i>个人电话簿
-		      </a></li>
-		    <li>
-		      <a href="my_card.html">
-			<i class="icon-info-sign"></i>我的名片
-		      </a></li>
-		    <li>
-		      <a href="about.html">
-			<i class="icon-phone"></i>关于我们
-		      </a></li>
-		    <li>
-		      <a href="version.html">
-			<i class="icon-link"></i>版本更新
-		      </a></li>
-	-->
-		  </ul>
-		</div>
+	<ul data-inset="true" data-role="listview">
+	  <li>
+	    <a href="enterprise_phone_book.html">
+	      <i class="icon-calendar"></i>企业电话簿
+	  </a></li>
+	  <!--	    <li>
+		    <a href="my_phone_book.html" rel="external">
+		      <i class="icon-calendar"></i>个人电话簿
+	  </a></li>
+	  <li>
+	    <a href="my_card.html">
+	      <i class="icon-info-sign"></i>我的名片
+	  </a></li>
+	  <li>
+	    <a href="about.html">
+	      <i class="icon-phone"></i>关于我们
+	  </a></li>
+	  <li>
+	    <a href="version.html">
+	      <i class="icon-link"></i>版本更新
+	  </a></li>
+	  -->
+	</ul>
       </div>
-
     </div>
 
+</div>
 
 
 
-  </body>
+
+</body>
 </html>

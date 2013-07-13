@@ -18,31 +18,60 @@
   <body id="body">
     <div data-role="page" id="body">
       <div class="navbar" data-role="header">
-	<h2>企业电话簿 登录</h2>
+	<h2>企业通讯录</h2>
       </div>
       <div data-role="content" id="working-area">
-	<div class="row-fluid" id="screen-full">
-	  <div id="login" style="width:80%;margin:0 auto;">
-	    <a href="dashboard.html" data-role="button" data-transition="fade" data-inline="true">直接进入主界面</a>
-<!--
-	    <form action="" data-transition="pop" method="GET" class="ui-body ui-body-a ui-corner-all">
-	      <fieldset >
-      		<input type="text" name="user_login[email]" value="tianbymy@163.com"/>
-      		<input type="password" name="user_login[password]" value="123456"/>
-      		<div class="ui-grid-a">
-		  <div class="ui-block-b">
-      		    <button type="submit" data-theme="b" name="submit" value="submit-value">登录</button>
-		  </div>
-		  <div>
-                    <a href="#">注册</a> | <a href="#">忘记密码</a>
-		  </div>
-      		</div>
-	      </fieldset>
-	    </form>
--->
-	  </div>
-	</div>
+	<div id="message"></div>
+	<form method="post" id="loginform">
+      	  <input type="text" id="account" name="user_login[email]" value="tianbymy@163.com"/><br />
+      	  <input type="password" id="passwrd" name="user_login[password]" value="adminxg"/>
+	  <a data-role="button" id="submit" data-theme="e">登录</a>
+          <a href="#">注册</a> | <a href="#">忘记密码</a>
+	</form>
       </div>
+      <script type="text/javascript">
+    	$(function() {
+	    //输入事件
+	    $("input[id]").bind("focus",function () {
+		if($(this).attr("id")=='account'||$(this).attr("id")=='password')
+		    $(this).attr("value","");
+	    });
+	    //提交
+	    $("#submit").bind("click", function() {
+		if (valid()) {
+		    $.ajax({
+			type: "POST",
+			url: login_path,
+			data: $("form#loginform").serialize(),
+			dataType: "jsonp",
+			jsonp: "callback",
+			success: function(msg){
+			    if(msg.status=="success"){
+				localStorage.setItem('email', msg.email);
+				localStorage.setItem('token', msg.auth_token);
+				$.mobile.changePage("dashboard.html","slidedown", true, true);
+			    }else{
+				$("$message").html("登录失败,请重新登录");
+				$.mobile.changePage("index.html","slidedown", true, true);
+			    }
+
+			}
+		    });
+		}
+	    });
+	});
+	//输入信息验证
+	function valid(){
+	    if($("#username").attr("value")==''||$("#password").attr("value")=='')
+	    {
+		$.mobile.changePage("index.html","slidedown", true, true);
+		return false;
+	    }
+	    return true;
+	};
+      </script>
+
+
 
   </body>
 </html>

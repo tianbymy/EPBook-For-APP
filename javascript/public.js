@@ -6,16 +6,37 @@ var user = {"account":"xiegang","created_at":"2013-07-09T15:33:51+08:00","email"
 function get_servers(obj){
     $.ajax({
 	type: "GET",
-	url: base_url+obj.url,
+	url: obj.url,
 	data: obj.data,
 	dataType: "jsonp",
 	jsonp: "callback",
 	success: function(result){obj.callback(result)}
-	})
+    })
 }
 
 /* 定义能访问的 api path */
-var get_root_organ_path = "/api/organs/get_root" ;
-var get_childs_organ_path = "/api/organs/get_organ_tree" ;
+var login_path = base_url + "/api/sessions/login";
+var logout_path = base_url + "/api/sessions/logout";
+var get_root_organ_path = base_url + "/api/organs/get_root" ;
+var get_childs_organ_path = base_url +"/api/organs/get_organ_tree" ;
 
+function logout(){
+    alert("正在退出")
+    $.ajax({
+	type: "GET",
+	url: logout_path,
+	data: {email: $.cookie("email")},
+	dataType: "jsonp",
+	jsonp: "callback",
+	success: function(msg){
+	    if(msg.status=="success"){
+		localStorage.removeItem('email');
+		localStorage.removeItem('token');
+		$.mobile.changePage("index.html","slidedown", true, true);
+	    }else{
+		$("$message").html("退出失败");
+	    }
+	}
+    });
+}
 
