@@ -18,6 +18,7 @@ function get_servers(obj){
 var login_path = base_url + "/api/sessions/login";
 var logout_path = base_url + "/api/sessions/logout";
 var get_user_path = base_url + "/api/sessions/get_user";
+var get_users_path = base_url + "/api/users/get_users";
 var get_root_organ_path = base_url + "/api/organs/get_root" ;
 var get_childs_organ_path = base_url +"/api/organs/get_organ_tree" ;
 

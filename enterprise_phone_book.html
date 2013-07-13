@@ -64,7 +64,24 @@
 
     }
     function get_users(organ_id){
-
+	get_servers({
+	    url: get_users_path,
+	    data: {"organ_id": organ_id},
+	    callback: function(result){
+		html="";
+		html+="<div>用户数：<span class='ui-li-count'>"+result.length+"</span></div>"
+		html+=create_user_html(result);
+		return html;
+	    }
+	})
+    }
+    function create_user_html(result){
+	html="<ol>";
+	for(i in result){
+	    html+="<li></li>"
+	}
+	html+="</ol>"
+	return html;
     }
     function list_children(dom,organ_id){
 	get_servers({
@@ -73,20 +90,29 @@
 	    callback: function(result){
 		html="";
 		html+="<div>部门总数<span class='ui-li-count'>"+result.length+"</span></div>"
-		for (i in result){
-		    html+="<ul>";
-		    if (result.child){
-			html+="<li data-role='collapsible'>";
-		    }else{
-			html+="<li data-role='collapsible'>";
-		    }
-		    html+=result[i].name
-		    html+="</li>";
-		    html+="</ul>";
-		}
+		html+=create_organ_html(result);
 		$(dom).append(html)
 	    }
 	})
+    }
+    function create_organ_html(result){
+	html="";
+	html+="<ol>";
+	for (i in result){
+	    html+="<li>";
+	    html+=result[i].name
+	    if (result[i].child.length==0){
+		html+="<b>用户数：</b>"
+		html+= get_users(result[i].id)
+	    }else{
+		html+="<b>下级部门数："+result[i].child.length+"</b>"
+		html+=create_organ_html(result[i].child);
+	    }
+
+	    html+="</li>";
+	}
+	html+="</ol>";
+	return html;
     }
   </script>
 </html>
