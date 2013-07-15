@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html class="ui-mobile" lang="en">
+<html lang="en">
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>企业通信录</title>
+    <title>企业通讯录</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <link href="css/jquery.mobile.css"  rel="stylesheet" type="text/css" />
-    <link href="css/jquery-ui.css"  rel="stylesheet" type="text/css" />
-    <link href="css/zhiyi-custom-theme.css"  rel="stylesheet" type="text/css" />
+
+
+
+    <!-- stylesheet lib begin -->
+    <link href="css/jquery.mobile.css" rel="stylesheet" type="text/css" />
+    <link href="css/jqm-icon-pack-fa.css" rel="stylesheet" type="text/css" />
     <link href="css/public.css" rel="stylesheet" type="text/css" />
-
+    <!-- stylesheet lib end -->
+    <!-- stylesheet lib begin-->
+    <!--    <script src="javascript/cordova.js" type="text/javascript"></script>-->
     <script src="javascript/jquery.js" type="text/javascript"></script>
-    <script src="javascript/jquery_ujs.js" type="text/javascript"></script>
     <script src="javascript/jquery.mobile.js" type="text/javascript"></script>
-    <script src="javascript/public.js" type="text/javascript"></script>
+
+    <!-- stylesheet lib end-->
+
+    <!-- zhiyisoft custom-theme -->
+    <link href="css/public.css" rel="stylesheet" type="text/css" />
+    <script src="javascript/application.js" type="text/javascript"></script>
+    <!-- zhiyisoft custom-theme -->
   </head>
-  <body id="body">
-    <div data-role="page" id="body">
+  <body>
+    <div id="page" data-role="page">
       <div class="navbar" data-role="header" data-position="fixed">
       	<a href="" data-role="button" data-icon="home" class="ui-btn-icon-notext" >
       	  home
@@ -44,20 +55,6 @@
 	    <a href="version.html" data-ajax="false">
 	      <i class="icon-link"></i>版本更新
 	  </a></li>
-	  <!--	    <li>
-		    <a href="my_phone_book.html" rel="external">
-		      <i class="icon-calendar"></i>个人电话簿
-	  </a></li>
-	  <li>
-	    <a href="my_card.html">
-	      <i class="icon-info-sign"></i>我的名片
-	  </a></li>
-	  <li>
-	    <a href="about.html">
-	      <i class="icon-phone"></i>关于我们
-	  </a></li>
-
-	  -->
 	</ul>
       </div>
     </div>
