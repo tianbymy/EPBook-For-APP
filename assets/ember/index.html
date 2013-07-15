@@ -4,17 +4,14 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <title>企业通讯录</title>
     <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="user-scalable=no,
-				   initial-scale=1,
-				   maximum-scale=1,
-				   minimum-scale=1,
-				   width=device-width,
-				   height=device-height,
-				   target-densitydpi=device-dpi" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+
+
 
     <!-- stylesheet lib begin -->
     <link href="css/jquery.mobile.css" rel="stylesheet" type="text/css" />
-<!--    <link href="css/zhiyi-custom-theme.css" rel="stylesheet" type="text/css" /> -->
+    <link href="css/jqm-icon-pack-fa.css" rel="stylesheet" type="text/css" />
     <link href="css/public.css" rel="stylesheet" type="text/css" />
     <!-- stylesheet lib end -->
     <!-- stylesheet lib begin-->
@@ -36,19 +33,63 @@
       </div>
       <div data-role="content">
 	<form method="post" id="loginform">
-	  <input type="text" id="account" name="account" value="tianbymy@163.com"/><br />
-	  <input type="password" id="passwrd" name="password" value="adminxg"/>
+	  <div data-role="controlgroup">
+	    <input id="account" type="text" id="account" name="account" value="tianbymy@163.com"/>
+	    <input type="password" id="password" name="password" value="adminxg" />
+	  </div>
 	  <fieldset class="ui-grid-a">
 	    <div class="ui-block-a"><button type="submit" data-theme="c">注册</button></div>
-	    <div class="ui-block-b"><button type="submit" data-theme="b">登录</button></div>
+	    <div class="ui-block-b"><a data-role="button" id="submit" data-theme="e">登录</a></div>
 	  </fieldset>
 	  <a href="#">忘记密码</a>
 	</form>
       </div>
 
-      <div data-role="footer">
-	<p>&copy;2013 ZhiyiSoft, Inc.</p>
+      <div data-role="footer" data-position="fixed">
+	<p  data-inline="true">&copy;2013 ZhiyiSoft, Inc.</p>
       </div>
     </div>
+
+    <script type="text/javascript">
+    	$(function() {
+	    //输入事件
+	    $("input[id]").bind("focus",function () {
+		if($(this).attr("id")=='account'||$(this).attr("id")=='password')
+		    $(this).attr("value","");
+	    });
+	    //提交
+	    $("#submit").bind("click", function() {
+		if (valid()) {
+		    $.ajax({
+			type: "POST",
+			url: login_path,
+			data: $("form#loginform").serialize(),
+			dataType: "jsonp",
+			jsonp: "callback",
+			success: function(msg){
+			    if(msg.status=="success"){
+				/*初始化user*/
+				inituser(msg.email,msg.auth_token);
+				$.mobile.changePage("dashboard.html","slidedown", false, false);
+			    }else{
+				$("$message").html("登录失败,请重新登录");
+				$.mobile.changePage("index.html","slidedown", false, false);
+			    }
+
+			}
+		    });
+		}
+	    });
+	});
+	//输入信息验证
+	function valid(){
+	    if($("#account").val()==''||$("#password").val()=='')
+	    {
+		//$.mobile.changePage("index.html","slidedown", true, true);
+		return false;
+	    }
+	    return true;
+	};
+      </script>
   </body>
 </html>
