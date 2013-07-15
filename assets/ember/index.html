@@ -14,11 +14,11 @@
 
     <!-- stylesheet lib begin -->
     <link href="css/jquery.mobile.css" rel="stylesheet" type="text/css" />
-    <link href="css/zhiyi-custom-theme.css" rel="stylesheet" type="text/css" />
+<!--    <link href="css/zhiyi-custom-theme.css" rel="stylesheet" type="text/css" /> -->
     <link href="css/public.css" rel="stylesheet" type="text/css" />
     <!-- stylesheet lib end -->
     <!-- stylesheet lib begin-->
-<!--    <script src="javascript/cordova.js" type="text/javascript"></script>-->
+    <!--    <script src="javascript/cordova.js" type="text/javascript"></script>-->
     <script src="javascript/jquery.js" type="text/javascript"></script>
     <script src="javascript/jquery.mobile.js" type="text/javascript"></script>
 
@@ -28,34 +28,27 @@
     <link href="css/public.css" rel="stylesheet" type="text/css" />
     <script src="javascript/application.js" type="text/javascript"></script>
     <!-- zhiyisoft custom-theme -->
-
-
-
-
-
-
   </head>
   <body>
+    <div id="page" data-role="page">
+      <div data-role="header" data-theme="a">
+	<h1>企业通讯录</h1>
+      </div>
+      <div data-role="content">
+	<form method="post" id="loginform">
+	  <input type="text" id="account" name="account" value="tianbymy@163.com"/><br />
+	  <input type="password" id="passwrd" name="password" value="adminxg"/>
+	  <fieldset class="ui-grid-a">
+	    <div class="ui-block-a"><button type="submit" data-theme="c">注册</button></div>
+	    <div class="ui-block-b"><button type="submit" data-theme="b">登录</button></div>
+	  </fieldset>
+	  <a href="#">忘记密码</a>
+	</form>
+      </div>
 
+      <div data-role="footer">
+	<p>&copy;2013 ZhiyiSoft, Inc.</p>
+      </div>
+    </div>
   </body>
-
-
-    <h1>企业通讯录</h1>
-
-
-
-    <p>&copy;2013 ZhiyiSoft, Inc.</p>
-
-    <form method="post" id="loginform">
-      <input type="text" id="account" name="user_login[email]" value="tianbymy@163.com"/><br />
-      <input type="password" id="passwrd" name="user_login[password]" value="adminxg"/>
-      <a data-role="button" id="submit" data-theme="e">登录</a>
-      <a href="#">注册</a> | <a href="#">忘记密码</a>
-    </form>
-
-
-
-
-
-
 </html>
