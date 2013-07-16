@@ -1,6 +1,6 @@
 var base_url="http://61.139.87.56:3000"
 var base_url="http://192.168.1.108:3000"
-var base_url="http://127.0.0.1:3000"
+//var base_url="http://127.0.0.1:3000"
 $(function(){
     $.ajaxSetup ({
 
