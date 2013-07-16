@@ -78,22 +78,23 @@
 	    dataType: "jsonp",
 	    jsonp: "callback",
 	    success: function(result){
-		html = create_user_html(result);
-		dom.next("div").html(html);
+		html="";
+//		html+="<div>用户数：<span class='ui-li-count'>"+result.length+"</span></div>"
+		html+="<ul data-role='listview' data-split-icon='delete'>";
+		for(i in result){
+		    html+="<li>";
+		    html+="<h3>"+result[i].name+"</h3>"
+		    html+="<p>手机:<a href='tel:"+result[i].phone+"'>"+result[i].phone+"</a></p>";
+		    html+="<p>"+result[i].organname+"</p>";
+		    html+="</li>"
+		}
+		html+="</ul>"
+		dom.next("div").html(html)
+		$("ul[data-role=listview]").listview();
 	    }
 	})
     }
-    function create_user_html(result){
-	html="";
-	html+="<div>用户数：<span class='ui-li-count'>"+result.length+"</span></div>"
-	html+="<ol>";
-	for(i in result){
-	    html+="<li><a href='tel:"+result[i].phone+"'>"+result[i].name+":"+result[i].phone+"</a></li>"
-	}
-	html+="</ol>"
-	return html;
-    }
-    function list_children(dom,organ_id){
+   function list_children(dom,organ_id){
 	get_servers({
 	    url: get_childs_organ_path,
 	    data: {"organ_id": organ_id},
