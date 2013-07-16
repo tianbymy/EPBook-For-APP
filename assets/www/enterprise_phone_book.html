@@ -37,14 +37,14 @@
 	      $("#logout").bind("click",function(){
 		  logout();
 	      })
-	      welcome();
 	  })
 	</script>
       </div>
       <div data-role="content" id="working-area">
-	<div id="user"></div>
 	<!-- 企业电话簿  区域-->
-	<div id="data-list"></div>
+	<div id="data-list" data-role="collapsible-set" data-filter="true" data-theme="c" data-content-theme="d">
+	</div>
+
       </div>
     </div>
   </body>
@@ -70,9 +70,6 @@
 
     })
 
-    function get_children(organ_id){
-
-    }
     function get_users(dom,organ_id){
 	$.ajax({
 	    type: "GET",
@@ -102,31 +99,43 @@
 	    data: {"organ_id": organ_id},
 	    callback: function(result){
 		html="";
-		html+="<div>部门总数<span class='ui-li-count'>"+result.length+"</span></div>"
-		html+=create_organ_html(result);
-		$(dom).append(html)
+		html+="<div data-role='list-divider'>部门总数<span class='ui-li-count'>"+result.length+"</span></div>";
+		for (i in result){
+		    html+="<div data-role='collapsible' data-theme='c' data-content-theme='c'>";
+		    if (result[i].child.length==0){
+			html+= "<h3  onclick='get_users($(this),"+result[i].id+")'>"+result[i].name+"</h3>";
+		    }else{
+			html+="<h3>"+result[i].name+"</h3>"
+		    }
+		    html+="<p></p>";
+		    html+="</div>";
+		}
+		html+="</div>";
+	    $(dom).append(html).listview('refresh');
 	    }
 	})
     }
     function create_organ_html(result){
 	html="";
-	html+="<ol>";
+	html+='<div data-role="collapsible" data-theme="c" data-content-theme="c">'
 	for (i in result){
-	    html+="<li>";
-	    html+=result[i].name
+	    html+="<div data-role='collapsible'>";
 	    if (result[i].child.length==0){
-		html+= "<span onclick='get_users($(this),"+result[i].id+")'>查看成员</span>";
-		html+="<div></div>";
+		html+= "<h3  onclick='get_users($(this),"+result[i].id+")'>"+result[i].name+"</h3>";
+		html+="<p></p>";
 	    }else{
-		html+="<b>下级部门数："+result[i].child.length+"</b>"
-		html+=create_organ_html(result[i].child);
+
+		html+=create_organ_html(result[i].child[a]);
+		}
+		html+="<h3>"+result[i].name+"</h3>"
+		html+="<p></p>"
 	    }
 
-	    html+="</li>";
-	}
-	html+="</ol>";
+	    html+="</div>";
+	html+="";
 	return html;
     }
+
   </script>
 </html>
 
