@@ -70,6 +70,8 @@ function logout(){
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
 		$.mobile.changePage("index.html","slidedown", false, false);
+		navigator.app.exitApp();
+
 	    }else{
 		$("$message").html("退出失败");
 	    }
