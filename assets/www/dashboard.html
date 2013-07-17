@@ -29,11 +29,8 @@
   <body>
     <div id="page" data-role="page">
       <div class="navbar" data-role="header" data-position="fixed">
-      	<a href="" data-role="button" data-icon="home" class="ui-btn-icon-notext" >
-      	  home
-      	</a>
-      	<h2>企业通讯录</h2>
-      	<a href="#" id="logout" data-role="button" data-icon="delete">退出</a>
+      	<h2>知一软件 企业通讯录</h2>
+      	<a href="#" id="logout" data-role="button" data-theme="b" class="ui-btn-right">退出</a>
 	<script type="text/javascript">
     	  $(function(){
 	      $("#logout").bind("click",function(){
@@ -46,23 +43,13 @@
       <div data-role="content" id="working-area">
 	<div id="user"></div>
 
-	<ul data-inset="true" data-role="listview">
-	  <li>
-	    <a href="enterprise_phone_book.html" data-ajax="false">
-	      <i class="icon-calendar"></i>企业电话簿
-	  </a></li>
-	  <li>
-	    <a href="version.html" data-ajax="false">
-	      <i class="icon-link"></i>版本更新
-	  </a></li>
-	</ul>
+	<div  data-role="controlgroup">
+	  <a href="enterprise_phone_book.html" data-ajax="false" rel="external" data-role="button">企业电话簿</a>
+	  <a href="version.html"  data-role="button">版本更新</a>
+	</div>
       </div>
+
     </div>
-
-</div>
-
-
-
 
 </body>
 </html>
