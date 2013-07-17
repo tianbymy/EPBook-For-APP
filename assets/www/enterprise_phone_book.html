@@ -46,6 +46,15 @@
 	</div>
 
       </div>
+      <div data-role="footer" data-position="fixed">
+	<div data-role="navbar">
+	  <ul>
+	  <li><a href="" >按部门</a></li>
+	  <li><a href="" >按人员</a></li>
+	  </ul>
+	</div>
+      </div>
+
     </div>
   </body>
 
@@ -84,8 +93,9 @@
 		for(i in result){
 		    html+="<li>";
 		    html+="<h3>"+result[i].name+"</h3>"
-		    html+="<p>手机:<a href='tel:"+result[i].phone+"'>"+result[i].phone+"</a></p>";
+		    html+="<p>手机:"+result[i].phone+"<a href='tel:"+result[i].phone+"' data-role='button'>点击拨号</a></p>";
 		    html+="<p>"+result[i].organname+"</p>";
+
 		    html+="</li>"
 		}
 		html+="</ul>"
