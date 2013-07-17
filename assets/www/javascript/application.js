@@ -69,7 +69,7 @@ function logout(){
 		localStorage.removeItem('email');
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
-		$.mobile.changePage("index.html","slidedown", true, true);
+		$.mobile.changePage("index.html","slidedown", false, false);
 	    }else{
 		$("$message").html("退出失败");
 	    }
