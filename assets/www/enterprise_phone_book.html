@@ -39,16 +39,18 @@
 	</script>
       </div>
       <div data-role="content" id="working-area">
-	<!-- 企业电话簿  区域-->
-	<div id="data-list" data-role="collapsible-set" data-filter="true" data-theme="c" data-content-theme="d" data-split-icon="grid">
+	<!-- Organ tree-->
+	<div data-demo-html="true">
+	  <ul id="data-list" data-role="listview" data-filter="true" data-header-theme="c" data-content-theme="d">
+	  </ul>
 	</div>
 
       </div>
       <div data-role="footer" data-position="fixed">
 	<div data-role="navbar">
 	  <ul>
-	  <li><a href="enterprise_phone_book.html" >按部门</a></li>
-	  <li><a href="person.html" >按人员</a></li>
+	    <li><a href="enterprise_phone_book.html" >按部门</a></li>
+	    <li><a href="person.html" >按人员</a></li>
 	  </ul>
 	</div>
       </div>
@@ -56,7 +58,7 @@
     </div>
 
     <div data-role="page" id="page2">
-      page2
+      <!-- user list -->
     </div>
 
 
@@ -75,75 +77,77 @@
 		    $("#data-list").html("<span style='color:red'>尊敬的用户您好，您暂时尚未加入任何企业，您需要先申请加入企业才能查看详细。</span>")
 		}else{
 		    $("#body h2").html(data.name)
-		    list_children("#body #data-list",data.id)
+		    create_organ_tree("#body #data-list",data.id)
 		}
-		}
-	    })
-
-    })
-
-    function get_users(dom,organ_id){
-	$.ajax({
-	    type: "GET",
-	    url: get_users_path,
-	    data: {"organ_id": organ_id},
-	    dataType: "jsonp",
-	    jsonp: "callback",
-	    success: function(result){
-		html="";
-//		html+="<div>用户数：<span class='ui-li-count'>"+result.length+"</span></div>"
-		html+="<ul data-role='listview' data-split-icon='delete'>";
-		for(i in result){
-		    html+="<li>";
-		    html+="<h3>"+result[i].name+"</h3>"
-		    html+="<p>手机:"+result[i].phone+"<a href='tel:"+result[i].phone+"' data-role='button'>点击拨号</a></p>";
-		    html+="<p>"+result[i].organname+"</p>";
-		    html+="</li>"
-		}
-		html+="</ul>"
-		dom.next("div").html(html)
-		$("ul[data-role=listview]").listview();
 	    }
 	})
-    }
-   function list_children(dom,organ_id){
+    })
+
+    function create_organ_tree(dom,organ_id){
 	get_servers({
 	    url: get_childs_organ_path,
 	    data: {"organ_id": organ_id},
 	    callback: function(result){
 		html="";
 		for (i in result){
-		    html+="<div data-role=collapsible>";
+		    html+="<li>";
 		    if (result[i].child.length==0){
-			html+= "<h3  onclick='get_users($(this),"+result[i].id+")'>"+result[i].name+"</h3>";
+			html+= result[i].name
+			a = Math.floor(Math.random() * ( 1000 + 1))
+			html+="<ul class='"+a+"'></ul>"
+			get_users(a,result[i].id)
+
 		    }else{
-			html+="<h3>"+result[i].name+"</h3>"
-			html+=create_organ_html(result[i].child);
+			html+=result[i].name
+			html+="<ul>";
+			html+=child_organ_html(result[i].child);
+			html+="</ul>"
 		    }
-
-		    html+="</div>";
+		    html+="</li>";
 		}
-//		html+="</div>";
-
-	    $(dom).append(html).collapsibleset('refresh')
-//		$("ul[data-role=listview]").listview();
-		    .find('div[data-role=collapsible]').collapsible();
+		$(dom).append(html).listview('refresh')
 	    }
 	})
     }
-    function create_organ_html(result){
+    function child_organ_html(result){
 	html="";
 	for (i in result){
-	    html+="<div data-role=collapsible >";
+	    html+="<li>"
 	    if (result[i].child.length==0){
-		html+= "<h3  onclick='get_users($(this),"+result[i].id+")'>"+result[i].name+"</h3>";
+		html+=result[i].name
+		a = Math.floor(Math.random() * ( 100000 + 1))
+		html+="<ul class='"+a+"'></ul>"
+		get_users(a,result[i].id)
+
 	    }else{
-		html+="<h3>"+result[i].name+"</h3>"
+		html+=result[i].name
 		html+=create_organ_html(result[i].child);
-		}
-	    html+="</div>";
+	    }
+	    html+="</li>"
 	}
 	return html;
+    }
+
+    function get_users(dom,organ_id){
+	get_servers({
+	    url: get_users_path,
+	    data: {"organ_id": organ_id},
+	    callback: function(data){
+		create_user_html(dom,data)
+	    }
+	})
+    }
+    function create_user_html(dom,result){
+	html="";
+	for(i in result){
+	    html+="<li>";
+	    html+="<h3>"+result[i].name+"</h3>"
+	    html+="<p>手机:"+result[i].phone+"<a href='tel:"+result[i].phone+"' data-role='button'>点击拨号</a></p>";
+	    html+="<p>"+result[i].organname+"</p>";
+	    html+='<a href="tel:'+result[i].phone+'" data-rel="popup" data-position-to="window" data-transition="pop"></a>';
+	    html+="</li>"
+	}
+	$("."+dom).html(html);
     }
 
   </script>
