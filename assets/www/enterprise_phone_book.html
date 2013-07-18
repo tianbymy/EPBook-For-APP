@@ -41,7 +41,7 @@
       <div data-role="content" id="working-area">
 	<!-- Organ tree-->
 	<div data-demo-html="true">
-	  <ul id="data-list" data-role="listview" data-filter="true" data-header-theme="c" data-content-theme="d">
+	  <ul id="data-list" data-inset="true" data-role="listview" data-filter="true" data-header-theme="c" data-content-theme="d">
 	  </ul>
 	</div>
 
@@ -94,7 +94,7 @@
 		    if (result[i].child.length==0){
 			html+= result[i].name
 			a = Math.floor(Math.random() * ( 1000 + 1))
-			html+="<ul class='"+a+"'></ul>"
+			html+="<ul class='"+a+"' data-split-icon='gear' data-split-theme='d' data-inset='true'></ul>"
 			get_users(a,result[i].id)
 
 		    }else{
@@ -116,7 +116,7 @@
 	    if (result[i].child.length==0){
 		html+=result[i].name
 		a = Math.floor(Math.random() * ( 100000 + 1))
-		html+="<ul class='"+a+"'></ul>"
+		html+="<ul class='"+a+"' data-split-icon='gear' data-split-theme='d' data-inset='true'></ul>"
 		get_users(a,result[i].id)
 
 	    }else{
@@ -141,13 +141,12 @@
 	html="";
 	for(i in result){
 	    html+="<li>";
-	    html+="<h3>"+result[i].name+"</h3>"
-	    html+="<p>手机:"+result[i].phone+"<a href='tel:"+result[i].phone+"' data-role='button'>点击拨号</a></p>";
+	    html+="<h2>"+result[i].name+"</h2>"
+	    html+="<p>手机:"+result[i].phone+"<a href='tel:"+result[i].phone+"' style='font-size:12pt'>拨号</a></p>";
 	    html+="<p>"+result[i].organname+"</p>";
-	    html+='<a href="tel:'+result[i].phone+'" data-rel="popup" data-position-to="window" data-transition="pop"></a>';
 	    html+="</li>"
 	}
-	$("."+dom).html(html);
+	$("."+dom).html(html).listview('refresh');
     }
 
   </script>
