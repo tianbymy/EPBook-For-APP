@@ -1,5 +1,5 @@
-var base_url="http://61.139.87.56:3000"
-var base_url="http://192.168.1.103:8080"
+var base_url="http://phonebook.zhiyisoft.com"
+//var base_url="http://192.168.1.103:8080"
 
 $(function(){
     $.ajaxSetup ({
