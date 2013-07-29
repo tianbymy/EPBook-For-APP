@@ -83,6 +83,7 @@
 	function valid(){
 	    if($("#account").val()==''||$("#password").val()=='')
 	    {
+		alert("信息验证失败")
 		$.mobile.changePage("index.html","slidedown", true, true);
 		return false;
 	    }
