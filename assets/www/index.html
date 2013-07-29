@@ -57,6 +57,7 @@
 	    //提交
 	    $("#submit").bind("click", function() {
 		if (valid()) {
+		    alert("正在请求登录...")
 		    $.ajax({
 			type: "POST",
 			url: login_path,
