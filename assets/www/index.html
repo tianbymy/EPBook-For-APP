@@ -36,7 +36,7 @@
 	  </div>
 	  <fieldset class="ui-grid-a">
 	    <div class="ui-block-a"><button type="submit" data-theme="c">注册</button></div>
-	    <div class="ui-block-b"><a data-role="button" id="submit" data-theme="e">登录</a></div>
+	    <div class="ui-block-b"><a data-role="button" onClick="submit_login()" id="submit" data-theme="e">登录</a></div>
 	  </fieldset>
 	  <a href="#">忘记密码</a>
 	</form>
@@ -54,8 +54,9 @@
 		if($(this).attr("id")=='account'||$(this).attr("id")=='password')
 		    $(this).attr("value","");
 	    });
+	})
 	    //提交
-	    $("#submit").bind("click", function() {
+	    function submit_login() {
 		if (valid()) {
 		    alert("正在请求登录...")
 		    $.ajax({
@@ -77,8 +78,7 @@
 			}
 		    });
 		}
-	    });
-	});
+	    }
 	//输入信息验证
 	function valid(){
 	    if($("#account").val()==''||$("#password").val()=='')
