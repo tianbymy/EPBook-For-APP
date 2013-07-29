@@ -1,11 +1,9 @@
 var base_url="http://61.139.87.56:3000"
-//var base_url="http://192.168.1.105:3000"
+var base_url="http://192.168.1.103:8080"
 
 $(function(){
     $.ajaxSetup ({
-
 	cache: false //关闭AJAX相应的缓存
-
     });
 })
 // 此处 ：模拟用户  实际情况的时候，根据登录帐号 获取
@@ -56,6 +54,7 @@ var get_user_path = base_url + "/api/sessions/get_user";
 var get_users_path = base_url + "/api/users/get_users";
 var get_root_organ_path = base_url + "/api/organs/get_root" ;
 var get_childs_organ_path = base_url +"/api/organs/get_organ_tree" ;
+var get_version_path =  base_url +"/api/versions" ;
 
 function logout(){
     $.ajax({
