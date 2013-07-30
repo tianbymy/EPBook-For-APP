@@ -36,7 +36,7 @@
 	  </div>
 	  <fieldset class="ui-grid-a">
 	    <div class="ui-block-a">
-	      <button type="button" onclick="javascript:alert('click test')" data-theme="c">注册</button>
+	      <button type="button" onclick="javascript:submit_login()" data-theme="c">注册</button>
 	    </div>
 	    <div class="ui-block-b">
 	      <button type="button" onclick="submit_login()" data-theme="e" value="登录" />
@@ -52,47 +52,9 @@
     </div>
 
     <script type="text/javascript">
-    	$(function() {
-	    //输入事件
-	    $("input[id]").bind("focus",function () {
-		if($(this).attr("id")=='account'||$(this).attr("id")=='password')
-		    $(this).attr("value","");
-	    });
-	})
-	    //提交
-	    function submit_login() {
-		if (valid()) {
-		    alert("正在请求登录...")
-		    $.ajax({
-			type: "POST",
-			url: login_path,
-			data: $("form#loginform").serialize(),
-			dataType: "jsonp",
-			jsonp: "callback",
-			success: function(msg){
-			    if(msg.status=="success"){
-				/*初始化user*/
-				inituser(msg.email,msg.auth_token);
-				$.mobile.changePage("dashboard.html","slidedown", false, false);
-			    }else{
-				$("$message").html("登录失败,请重新登录");
-				$.mobile.changePage("index.html","slidedown", false, false);
-			    }
-
-			}
-		    });
-		}
-	    }
-	//输入信息验证
-	function valid(){
-	    if($("#account").val()==''||$("#password").val()=='')
-	    {
-		alert("信息验证失败")
-		$.mobile.changePage("index.html","slidedown", true, true);
-		return false;
-	    }
-	    return true;
-	};
-      </script>
+      function submit_login(){
+	  alert("111")
+      }
+    </script>
   </body>
 </html>
