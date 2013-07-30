@@ -5,9 +5,9 @@ $(function(){
     $.ajaxSetup ({
 	cache: false //关闭AJAX相应的缓存
     });
+    $.mobile.defaultPageTransition = 'none';
 })
-// 此处 ：模拟用户  实际情况的时候，根据登录帐号 获取
-//var user = {"account":"xiegang","created_at":"2013-07-09T15:33:51+08:00","email":"xiegang@zhiyisoft.com","id":2,"membership_id":2,"name":"谢刚","organ_id":2,"phone":"18628171676","status":0,"updated_at":"2013-07-09T15:33:51+08:00"}
+
 $( document ).bind( 'mobileinit', function(){
     $.mobile.loader.prototype.options.text = "加载中...";
     $.mobile.loader.prototype.options.textVisible = false;
@@ -16,7 +16,6 @@ $( document ).bind( 'mobileinit', function(){
 });
 //显示加载器
 function showLoader() {
-    //显示加载器.for jQuery Mobile 1.2.0
     $.mobile.loading('show', {
         text: '加载中...', //加载器中显示的文字
         textVisible: false, //是否显示文字
@@ -25,10 +24,8 @@ function showLoader() {
         html: "<img src='/css/images/ajax_loader.gif />'"           //要显示的html内容，如图片等
     });
 }
-//隐藏加载器.for jQuery Mobile 1.2.0
 function hideLoader()
 {
-    //隐藏加载器
     $.mobile.loading('hide');
 }
 
