@@ -52,6 +52,10 @@
     </div>
     <script type="text/javascript">
       $(function() {
+	  email = localStorage.getItem("email")
+	  if(email !=null ){
+	      $("#account").val(email)
+	  };
 	  //输入事件
 	  $("input[id]").bind("focus",function () {
 	      if($(this).attr("id")=='account'||$(this).attr("id")=='password')
