@@ -31,10 +31,11 @@
 	<h1>企业通讯录</h1>
       </div>
       <div data-role="content">
+	<div class="message"></div>
 	<form method="post" id="loginform">
 	  <div data-role="controlgroup">
-	    <input id="account" type="text" id="account" name="account" value="tianbymy@163.com"/>
-	    <input type="password" id="password" name="password" value="adminxg" />
+	    <input id="account" type="text" id="account" name="account" />
+	    <input type="password" id="password" name="password"  />
 	  </div>
 	  <fieldset class="ui-grid-a">
 	    <div class="ui-block-a">
@@ -64,7 +65,7 @@
       function submit_login() {
 	  if (valid()) {
 	      $.ajax({
-		  type: "POST",
+		  type: "get",
 		  url: login_path,
 		  data: $("form#loginform").serialize(),
 		  dataType: "jsonp",
@@ -75,7 +76,7 @@
 			  inituser(msg.email,msg.auth_token);
 			  $.mobile.changePage("dashboard.html","slidedown", false, false);
 		      }else{
-			  $("$message").html("登录失败,请重新登录");
+			  $(".message").html("登录失败,请重新登录");
 			  $.mobile.changePage("index.html","slidedown", false, false);
 		      }
 

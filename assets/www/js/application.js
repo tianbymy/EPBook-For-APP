@@ -1,13 +1,12 @@
 var base_url="http://phonebook.zhiyisoft.com"
-//var base_url="http://192.168.1.103:8080"
+var base_url="http://192.168.1.100:8080"
 
 $(function(){
     $.ajaxSetup ({
 	cache: false //关闭AJAX相应的缓存
     });
 })
-// 此处 ：模拟用户  实际情况的时候，根据登录帐号 获取
-//var user = {"account":"xiegang","created_at":"2013-07-09T15:33:51+08:00","email":"xiegang@zhiyisoft.com","id":2,"membership_id":2,"name":"谢刚","organ_id":2,"phone":"18628171676","status":0,"updated_at":"2013-07-09T15:33:51+08:00"}
+
 $( document ).bind( 'mobileinit', function(){
     $.mobile.loader.prototype.options.text = "加载中...";
     $.mobile.loader.prototype.options.textVisible = false;
@@ -48,13 +47,13 @@ function get_servers(obj){
 }
 
 // 定义能访问的 api path
-var login_path = base_url + "/api/sessions/login";
-var logout_path = base_url + "/api/sessions/logout";
-var get_user_path = base_url + "/api/sessions/get_user";
+var login_path = base_url + "/users/login.json";
+var logout_path = base_url + "/users/logout.json";
+var get_user_path = base_url + "/api/users/get_user";
 var get_users_path = base_url + "/api/users/get_users";
 var get_root_organ_path = base_url + "/api/organs/get_root" ;
 var get_childs_organ_path = base_url +"/api/organs/get_organ_tree" ;
-var get_version_path =  base_url +"/api/versions" ;
+var get_version_path =  base_url +"/api/version" ;
 
 function logout(){
     $.ajax({
