@@ -1,5 +1,5 @@
 var base_url="http://phonebook.zhiyisoft.com"
-//var base_url="http://192.168.1.103:8080"
+var base_url="http://192.168.1.100:8080"
 
 $(function(){
     $.ajaxSetup ({
@@ -45,14 +45,14 @@ function get_servers(obj){
 }
 
 // 定义能访问的 api path
-var login_path = base_url + "/api/sessions/login";
-var logout_path = base_url + "/api/sessions/logout";
-var get_user_path = base_url + "/api/sessions/get_user";
+var login_path = base_url + "/users/login.json";
+var logout_path = base_url + "/users/logout.json";
+var get_user_path = base_url + "/api/users/get_user";
 var get_users_path = base_url + "/api/users/get_users";
 var all_users_path = base_url + "/api/users/all_users";
 var get_root_organ_path = base_url + "/api/organs/get_root" ;
 var get_childs_organ_path = base_url +"/api/organs/get_organ_tree" ;
-var get_version_path =  base_url +"/api/versions" ;
+var get_version_path =  base_url +"/api/version" ;
 
 function logout(){
     $.ajax({
