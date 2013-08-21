@@ -1,12 +1,11 @@
 var base_url="http://phonebook.zhiyisoft.com"
-var base_url="http://192.168.1.103:8080"
+var base_url="http://192.168.1.104:8080"
 
 $(function(){
     $.ajaxSetup ({
 	cache: false //关闭AJAX相应的缓存
     });
     $.mobile.defaultPageTransition = 'none';
-    checkConnection();
 })
 
 $( document ).bind( 'mobileinit', function(){
@@ -33,7 +32,7 @@ function galert(content){
     navigator.notification.alert(
 	content,  // 显示信息
 	'',
-	'信息提示'            // 标题
+	'信息提示'  // 标题
     );
 }
 
@@ -42,7 +41,9 @@ function checkConnection() {
     var networkState = navigator.network.connection.type;
     if (networkState =="none"){
 	galert("未连接网络，请先确认网络")
+	return false;
     }
+    return true;
 /*    var states = {};
     states[Connection.UNKNOWN]  = 'Unknown connection';
     states[Connection.ETHERNET] = 'Ethernet connection';
@@ -117,6 +118,7 @@ inituser = function(email,token){
     })
 }
 function welcome(){
+    galert("测试执行welcome")
     html="";
     if (localStorage.getItem("name")==null){
 	html+="<span>欢迎您，尊敬的："+localStorage.getItem("email")+"</span>";

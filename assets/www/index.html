@@ -59,7 +59,7 @@
       })
       //提交
       function submit_login() {
-	  if (valid()) {
+	  if ( checkConnection() && valid()) {
 	      $.ajax({
 		  type: "get",
 		  url: login_path,
