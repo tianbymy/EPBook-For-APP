@@ -7,8 +7,7 @@
     <!-- stylesheet lib begin-->
     <script src="cordova.js"type="text/javascript" ></script>
     <script src="js/jquery.js" type="text/javascript"></script>
-    <script src="js/jquery.mobile.js" type="text/javascript"></script>
-
+    <script src="js/jquery.mobile.js" type="text/javascript"></script
     <!-- stylesheet lib end-->
     <!-- stylesheet lib begin -->
     <link href="css/jquery.mobile.css" rel="stylesheet" type="text/css" />
@@ -16,11 +15,6 @@
     <link href="css/public.css" rel="stylesheet" type="text/css" />
     <!-- stylesheet lib end -->
 
-
-    <!-- zhiyisoft custom-theme -->
-    <link href="css/public.css" rel="stylesheet" type="text/css" />
-    <script src="js/application.js" type="text/javascript"></script>
-    <!-- zhiyisoft custom-theme -->
     <title>企业通讯录</title>
   </head>
   <body>
@@ -32,7 +26,7 @@
 	<div class="message"></div>
 	<form method="post" id="loginform">
 	  <div data-role="controlgroup">
-	    <input id="account" type="text" id="account" name="account" placeholder="输入您的邮箱 或 手机号"/>
+	    <input id="account" type="email" id="account" name="account" placeholder="输入您的邮箱 或 手机号"/>
 	    <input type="password" id="password" name="password" placeholder="********"/>
 	  </div>
 	  <fieldset class="ui-grid-a">
@@ -78,8 +72,7 @@
 			  inituser(msg.email,msg.auth_token);
 			  $.mobile.changePage("dashboard.html","slidedown", false, false);
 		      }else{
-			  $(".message").html("登录失败,请重新登录");
-			  $.mobile.changePage("index.html","slidedown", false, false);
+			  galert('登录失败,请重新登录',"信息提示")
 		      }
 
 		  }
@@ -90,16 +83,20 @@
       function valid(){
 	  if($("#account").val()==''||$("#password").val()=='')
 	  {
-	      alert("信息验证失败")
-	      $.mobile.changePage("index.html","slidedown", true, true);
+	      galert('帐号或密码不能为空',"信息提示");
 	      return false;
 	  }
 	  return true;
       };
       function register(){
-	  alert("客户端暂未提供注册支持，请到服务端注册，您也可以用浏览器访问http://phonebook.zhiyisoft.com");
+	  galert("客户端暂未提供注册支持，请到服务端注册，您也可以用浏览器访问http://phonebook.zhiyisoft.com","信息提示");
       }
 
     </script>
+    <!-- zhiyisoft custom-theme -->
+    <link href="css/public.css" rel="stylesheet" type="text/css" />
+    <script src="js/application.js" type="text/javascript"></script>
+    <!-- zhiyisoft custom-theme -->
+
   </body>
 </html>
