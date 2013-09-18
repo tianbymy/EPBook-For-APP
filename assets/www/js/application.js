@@ -1,5 +1,5 @@
 var base_url="http://phonebook.zhiyisoft.com"
-var base_url="http://192.168.1.104:8080"
+// var base_url="http://192.168.1.104:8080"
 
 $(function(){
     $.ajaxSetup ({
@@ -118,7 +118,6 @@ inituser = function(email,token){
     })
 }
 function welcome(){
-    galert("测试执行welcome")
     html="";
     if (localStorage.getItem("name")==null){
 	html+="<span>欢迎您，尊敬的："+localStorage.getItem("email")+"</span>";
