@@ -1,4 +1,4 @@
-var base_url="http://phonebook.zhiyisoft.com"
+var base_url="http://phonebook.zhiyisoft.com:9000"
 // var base_url="http://192.168.1.104:8080"
 
 $(function(){
